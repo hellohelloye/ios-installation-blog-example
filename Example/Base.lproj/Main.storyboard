@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a simple example, we want to jump to another application" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiF-ej-LNu">
+                                <rect key="frame" x="46" y="291.5" width="508" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7K9-dd-GSj">
+                                <rect key="frame" x="0.0" y="20" width="600" height="80"/>
+                                <subviews>
+                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xsq-Yv-iwo">
+                                        <rect key="frame" x="-1" y="78" width="602" height="2"/>
+                                    </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTA-Jv-tRF">
+                                        <rect key="frame" x="538" y="25" width="42" height="30"/>
+                                        <state key="normal" title="OPEN">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="hVJ-Pm-ArL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue in another App" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-16-oCV">
+                                        <rect key="frame" x="20" y="30" width="187" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="A6O-Ea-UPe"/>
+                                    <constraint firstAttribute="bottom" secondItem="xsq-Yv-iwo" secondAttribute="bottom" id="G4i-O0-feY"/>
+                                    <constraint firstAttribute="centerY" secondItem="eTA-Jv-tRF" secondAttribute="centerY" id="HHc-zx-M8s"/>
+                                    <constraint firstAttribute="trailing" secondItem="xsq-Yv-iwo" secondAttribute="trailing" constant="-1" id="MgS-MC-h1S"/>
+                                    <constraint firstItem="lZh-16-oCV" firstAttribute="leading" secondItem="7K9-dd-GSj" secondAttribute="leading" constant="20" id="SB0-pO-zjq"/>
+                                    <constraint firstAttribute="centerY" secondItem="lZh-16-oCV" secondAttribute="centerY" constant="0.5" id="WYU-Km-a94"/>
+                                    <constraint firstItem="xsq-Yv-iwo" firstAttribute="leading" secondItem="7K9-dd-GSj" secondAttribute="leading" constant="-1" id="gMO-SO-4gr"/>
+                                    <constraint firstItem="eTA-Jv-tRF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lZh-16-oCV" secondAttribute="trailing" constant="8" id="kZn-PV-WnJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="eTA-Jv-tRF" secondAttribute="trailing" constant="20" id="nVq-hs-2No"/>
+                                    <constraint firstItem="lZh-16-oCV" firstAttribute="leading" secondItem="7K9-dd-GSj" secondAttribute="leading" constant="20" id="pGb-Wh-GdC"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SB0-pO-zjq"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7K9-dd-GSj" secondAttribute="trailing" constant="-16" id="A7a-Ce-iGS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hiF-ej-LNu" secondAttribute="trailing" constant="30" id="WYW-tP-Ox3"/>
+                            <constraint firstItem="7K9-dd-GSj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="eRb-cr-qA0"/>
+                            <constraint firstItem="hiF-ej-LNu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="gpU-GV-5kx"/>
+                            <constraint firstItem="7K9-dd-GSj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jy0-OX-55e"/>
+                            <constraint firstAttribute="centerY" secondItem="hiF-ej-LNu" secondAttribute="centerY" constant="-1.5" id="wDz-ns-ioc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="eTA-Jv-tRF" id="gY2-s1-97W"/>
+                        <outlet property="progressIndicator" destination="xsq-Yv-iwo" id="xbV-mY-Nbr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="582" y="483"/>
+        </scene>
+    </scenes>
+</document>
