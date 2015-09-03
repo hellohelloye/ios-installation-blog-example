@@ -10,7 +10,7 @@ There are two methods outlined in [`ViewController.swift`](Example/ViewControlle
 
 ## About Us
 
-[Some standard sign-off for our open source repositories]
+Move fast without breaking things. [Testlio](https://testlio.com) lets you offload your QA needs on day one so you can release your app with confidence.
 
 ## License
 
