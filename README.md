@@ -10,7 +10,7 @@ There are two methods outlined in [`ViewController.swift`](Example/ViewControlle
 
 ## About Us
 
-Release your app with confidence. Testlio’s full-service mobile app testing solution allows you to offload your QA with the most flexible requirements. All we need is your build and our global community of expert testers will give your app the tender love and care it deserves. Join our [growing team](www.testlio.com).
+Release your app with confidence. Testlio’s full-service mobile app testing solution allows you to offload your QA with the most flexible requirements. All we need is your build and our global community of expert testers will give your app the tender love and care it deserves. Join our [growing team](https://www.testlio.com).
 
 ## License
 
