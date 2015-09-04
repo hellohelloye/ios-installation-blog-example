@@ -10,7 +10,7 @@ There are two methods outlined in [`ViewController.swift`](Example/ViewControlle
 
 ## About Us
 
-Move fast without breaking things. [Testlio](https://testlio.com) lets you offload your QA needs on day one so you can release your app with confidence.
+Release your app with confidence. Testlio’s full-service mobile app testing solution allows you to offload your QA with the most flexible requirements. All we need is your build and our global community of expert testers will give your app the tender love and care it deserves. Join our [growing team](www.testlio.com).
 
 ## License
 
