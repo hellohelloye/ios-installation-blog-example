@@ -1,6 +1,6 @@
 # Example use of private iOS APIs
 
-This is an example project that accompanies [this blog post](http://testlio.com/blog), please read that first! The project in this repository demonstrates opening and installation of applications from within another application, relying on Over-the-Air distribution and private APIs in MobileCoreServices.framework.
+This is an example project that accompanies [this blog post](https://testlio.com/blog/post/ios-sdk-wilderness), please read that first! The project in this repository demonstrates opening and installation of applications from within another application, relying on Over-the-Air distribution and private APIs in MobileCoreServices.framework.
 
 ## Usage
 
