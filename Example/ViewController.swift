@@ -127,10 +127,17 @@ class ViewController: UIViewController {
     
     // MARK: Helpers
     
-    private func displayError(error: NSError) {
-        let alert = UIAlertController(title: "Failed", message: error.localizedDescription, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    private func displayError(error: ErrorType) {
+        if let printable = error as? CustomStringConvertible {
+            let alert = UIAlertController(title: "Failed", message: printable.description, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let typedError = error as NSError
+            let alert = UIAlertController(title: "Failed", message: typedError.localizedDescription, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 }
 

@@ -40,8 +40,6 @@
 import Foundation
 import UIKit
 
-let ApplicationErrorDomain = "application.proxy.error"
-
 class Application: NSObject {
     private var proxies = [LSApplicationProxy]()
     
@@ -51,7 +49,7 @@ class Application: NSObject {
     
     private var internalProgress: NSProgress?
     private var installationProgress: NSProgress?
-    private var installationCompletion: ((Bool, NSError?) -> Void)?
+    private var installationCompletion: ((Bool, ErrorType?) -> Void)?
     
     private var installationCheckingTimer: NSTimer?
         
@@ -151,7 +149,7 @@ class Application: NSObject {
     ///
     /// Possible error codes
     ///
-    enum InstallError: Int {
+    enum InstallError: ErrorType {
         case UserCancelled
         case Internal
     }
@@ -163,7 +161,7 @@ class Application: NSObject {
     /// - parameter completion:  Block to be executed when the installation finishes (either fails or succeeds)
     /// - returns: Progress for the installation
     ///
-    func install(completion: ((Bool, NSError?) -> Void)?) -> NSProgress? {
+    func install(completion: ((Bool, ErrorType?) -> Void)?) -> NSProgress? {
         if let progress = self.installationProgress {
             return progress
         }
@@ -259,9 +257,6 @@ class Application: NSObject {
     }
     
     private func failInstallationWithError(error: InstallError) {
-        let info = [NSLocalizedDescriptionKey: error.description]
-        let error = NSError(domain: ApplicationErrorDomain, code: error.rawValue, userInfo: info)
-        
         self.installationCompletion?(false, error)
         self.cleanup()
     }
@@ -292,12 +287,4 @@ extension Application.InstallError: CustomStringConvertible {
             }
         }
     }
-}
-
-func ==(lhs: Application.InstallError, rhs: Int) -> Bool {
-    return lhs.rawValue == rhs
-}
-
-func ==(lhs: Int, rhs: Application.InstallError) -> Bool {
-    return lhs == rhs.rawValue
 }
