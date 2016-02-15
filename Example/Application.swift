@@ -106,7 +106,7 @@ class Application: NSObject {
     /// Create an application that not only refers to local applications, but also allows installation from
     /// a manifest online (using itms-service, so normal requirements apply)
     ///
-    static func createApplication(#manifestURL: NSURL, completion: ((Application?, NSError?) -> Void)) {
+    static func createApplication(manifestURL manifestURL: NSURL, completion: ((Application?, ErrorType?) -> Void)) {
         let request = NSURLRequest(URL: manifestURL)
         self.createApplication(manifestRequest: request, completion: completion)
     }
@@ -115,21 +115,25 @@ class Application: NSObject {
     /// Create an application that not only refers to local applications, but also allows installation from
     /// a manifest online (using itms-service, so normal requirements apply)
     ///
-    static func createApplication(#manifestRequest: NSURLRequest, completion: ((Application?, NSError?) -> Void)) {
+    static func createApplication(manifestRequest manifestRequest: NSURLRequest, completion: ((Application?, ErrorType?) -> Void)) {
         if let URL = manifestRequest.URL {
             // Fetch the manifest (we get our bundle identifier from there)
             let task = NSURLSession.sharedSession().dataTaskWithRequest(manifestRequest) { data, response, error in
                 if let data = data {
-                    var error: NSError?
-                    let plist: AnyObject? = NSPropertyListSerialization.propertyListWithData(data, options: 0, format: nil, error: &error)
-                    
-                    if let dict = plist as? [String: AnyObject], items = dict["items"] as? [[String: AnyObject]], metadata = items.first?["metadata"] as? [String: String] {
-                        let application = Application(bundleIdentifier: metadata["bundle-identifier"]!, manifestURL: URL)
-                        application.bundleVersion = metadata["bundle-version"]
+                    do {
+                        let plist = try NSPropertyListSerialization.propertyListWithData(data, options: [], format: nil)
                         
-                        completion(application, nil)
-                    } else {
-                        completion(nil, error)
+                        
+                        if let dict = plist as? [String: AnyObject], items = dict["items"] as? [[String: AnyObject]], metadata = items.first?["metadata"] as? [String: String] {
+                            let application = Application(bundleIdentifier: metadata["bundle-identifier"]!, manifestURL: URL)
+                            application.bundleVersion = metadata["bundle-version"]
+                            
+                            completion(application, nil)
+                        } else {
+                            completion(nil, error)
+                        }
+                    } catch let err {
+                        completion(nil, err)
                     }
                 } else {
                     completion(nil, nil)
@@ -156,8 +160,8 @@ class Application: NSObject {
     /// Install the application
     /// This is only applicable for applications created with a manifest URL
     ///
-    /// :param: completion  Block to be executed when the installation finishes (either fails or succeeds)
-    /// :returns: Progress for the installation
+    /// - parameter completion:  Block to be executed when the installation finishes (either fails or succeeds)
+    /// - returns: Progress for the installation
     ///
     func install(completion: ((Bool, NSError?) -> Void)?) -> NSProgress? {
         if let progress = self.installationProgress {
@@ -192,7 +196,7 @@ class Application: NSObject {
     ///
     /// Launch the application
     ///
-    /// :returns: True if launching was possible (does not guarantee the application was actually launched)
+    /// - returns: True if launching was possible (does not guarantee the application was actually launched)
     ///
     func launch() -> Bool {
         let workspace = LSApplicationWorkspace.defaultWorkspace() as! LSApplicationWorkspace
@@ -222,7 +226,7 @@ class Application: NSObject {
     
     // MARK: KVO
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "fractionCompleted" {
             if let progress = self.installationProgress, other = object as? NSProgress {
                 progress.completedUnitCount = other.completedUnitCount
@@ -277,7 +281,7 @@ class Application: NSObject {
 //  Convenience extensions for the error code
 //
 
-extension Application.InstallError: Printable {
+extension Application.InstallError: CustomStringConvertible {
     var description: String {
         get {
             switch self {
